@@ -28,19 +28,31 @@
 import express from 'express';
 import path from 'path';
 const app = express();
- const PORT = 3000;
+const PORT = 3000;
 
- app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(path.join(__dirname, './static')));
 
- app.get('/', (req, res) => {
- res.sendFile(path.join(__dirname, './static/index.html'));
- });
- app.get('/index.html', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './static/index.html'));
-    });
+});
+app.get('/index\*', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/index.html'));
+});
 
+app.get('/service', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/service.html'));
+});
+app.get('/project\*', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/projects.html'));
+});
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/aboutme.html'));
+});
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/contact.html'));
+});
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     //console.log(`Your server is running on port ${PORT}`);
     console.log(`Server is running in http://localhost:${PORT}`);
     //console.log(data);
